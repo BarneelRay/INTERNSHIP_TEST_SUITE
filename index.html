@@ -9,7 +9,7 @@
     }
 
     function fetchData() {
-      fetch("https://barneelray.github.io/INTERNSHIP_TEST_SUITE/") // Change this URL to match your ESP8266 server endpoint
+      fetch("/INTERNSHIP_TEST_SUITE") // Change this URL to match your ESP8266 server endpoint
         .then(response => response.text())
         .then(data => {
           const [tdsA, tdsB] = data.split(','); // Assuming data format: "tdsA,tdsB"
