@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TDS Values</title>
+  <script>
+    function updateTDSValues(tdsA, tdsB) {
+      document.getElementById("feedTDS").innerHTML = tdsA;
+      document.getElementById("filtrateTDS").innerHTML = tdsB;
+    }
+
+    function fetchData() {
+      fetch("/data") // Change this URL to match your ESP8266 server endpoint
+        .then(response => response.text())
+        .then(data => {
+          const [tdsA, tdsB] = data.split(','); // Assuming data format: "tdsA,tdsB"
+          updateTDSValues(tdsA, tdsB);
+        });
+    }
+
+    setInterval(fetchData, 1000); // Fetch data every 1 second
+  </script>
+</head>
+<body>
+  <h1>TDS Values</h1>
+  <p>Feed Water TDS: <span id="feedTDS">Loading...</span></p>
+  <p>Filtrate Water TDS: <span id="filtrateTDS">Loading...</span></p>
+</body>
+</html>
